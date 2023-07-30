@@ -1,0 +1,61 @@
+@model IEnumerable<Expenses.Models.Expense>
+
+@{
+    
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpenseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpenseAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpenseCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpenseDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpenseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpenseAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpenseCategory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpenseDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ExpenseID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ExpenseID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ExpenseID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>
