@@ -21,7 +21,7 @@ namespace Expenses.Models
 
         [Required]
         [Column(TypeName = "nvarchar(50)")]
-        [DisplayName("Categor")]
+        [DisplayName("Category")]
         public string ExpenseCategory { get; set; }
 
         [Required]

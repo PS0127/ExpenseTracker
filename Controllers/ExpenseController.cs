@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Expenses.Models;
+using System.Drawing.Printing;
 
 namespace Expenses.Controllers
 {
@@ -19,11 +20,26 @@ namespace Expenses.Controllers
         }
 
         // GET: Expense
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page=1)
         {
-              return _context.Expenses != null ? 
-                          View(await _context.Expenses.ToListAsync()) :
-                          Problem("Entity set 'ExpenseDbContext.Expenses'  is null.");
+            List<Expense> expenses = await _context.Expenses.ToListAsync();
+
+            const int pageSize = 1;
+            if (page < 1)
+            {
+                page =1;
+            }
+
+            var pager = new Pager(expenses.Count, page, pageSize);
+
+            int recordSkip = (page -1) * pageSize;
+
+            var data = expenses.Skip(recordSkip).Take(pager.PageSize).ToList();
+
+            this.ViewBag.Pager = pager;
+
+            return View(data);
+
         }
 
         // GET: Expense/Details/5

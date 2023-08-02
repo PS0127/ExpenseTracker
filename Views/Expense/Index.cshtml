@@ -1,7 +1,19 @@
 @model IEnumerable<Expenses.Models.Expense>
 
 @{
-    
+
+    ViewData["Title"] = "Expenses";
+
+    Pager pager = new();
+
+    int pageNumber = 0;
+
+    if (ViewBag.pager != null)
+    {
+        pager = ViewBag.pager;
+        pageNumber = pager.CurrentPage;
+    }
+
 }
 
 <!DOCTYPE html>
@@ -57,5 +69,41 @@
 }
     </tbody>
 </table>
+
+<div class="container">
+    @if (pager.TotalPages > 0)
+        {
+            <ul class="pagination justify-content-end">
+
+
+                @if (pager.CurrentPage > 1)
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="Expense" asp-action="Index" asp-route-page="1">First</a>
+                    </li>
+                    <li>
+                        <a class="page-link" asp-controller="Expense" asp-action="Index" asp-route-page="@(pager.CurrentPage-1)">Previous</a>
+                    </li>
+                }
+                @for (var pg = pager.StartPage; pg <= pager.EndPage; pg++)
+                {
+                    <li class="page-item @(pg == pager.CurrentPage ? "active" : "")">
+                        <a class="page-link" asp-controller="Expense" asp-action="Index" asp-route-page="@pg"> @pg</a>
+
+                    </li>
+                }
+
+                @if (pager.CurrentPage < pager.TotalPages)
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="Expense" asp-action="Index" asp-route-page="@(pager.CurrentPage+1)">Next</a>
+                    </li>
+                    <li>
+                        <a class="page-link" asp-controller="Expense" asp-action="Index" asp-route-page="@pager.TotalPages">Last</a>
+                    </li>
+                }
+            </ul>
+        }
+</div>
 </body>
 </html>
