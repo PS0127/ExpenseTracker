@@ -1,0 +1,35 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<div id="dashboard" class="flex-container">
+
+    <div class="flex-child magenta widget">
+        <ejs-accumulationchart id="container">
+            <e-accumulation-series-collection>
+                <e-accumulation-series innerRadius="40%" dataSource="ViewBag.chartExpenses" xName="category" yName="amount">
+                    <e-accumulationseries-datalabel name="formattedAmount"></e-accumulationseries-datalabel>
+                </e-accumulation-series>
+            </e-accumulation-series-collection>
+            <e-accumulationchart-legendsettings position="Bottom"></e-accumulationchart-legendsettings>
+            <e-accumulationchart-tooltipsettings enable></e-accumulationchart-tooltipsettings>
+        </ejs-accumulationchart>
+        
+    </div>
+
+    <div id="recentexpenses" class="flex-child green widget">
+        <h3>Recent Expenses</h3>
+        <ejs-grid id="recentExpenses" dataSource="@ViewBag.RecentExpenses">
+            <e-grid-columns>
+                <e-grid-column field="ExpenseName" headerText="Name"></e-grid-column>
+                <e-grid-column field="ExpenseAmount" headerText="Amount"></e-grid-column>
+                <e-grid-column field="ExpenseCategory" headerText="Category"></e-grid-column>
+                <e-grid-column field="ExpenseDate" headerText="Date" format="ddd MMM yy"></e-grid-column>
+            </e-grid-columns>
+        </ejs-grid>
+    </div>
+
+</div>
