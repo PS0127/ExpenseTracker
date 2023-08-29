@@ -24,7 +24,7 @@ namespace Expenses.Controllers
         {
             List<Expense> expenses = await _context.Expenses.ToListAsync();
 
-            const int pageSize = 1;
+            const int pageSize = 10;
 
             if (page < 1)
             {

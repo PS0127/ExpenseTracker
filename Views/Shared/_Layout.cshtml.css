@@ -46,3 +46,38 @@ button.accept-policy {
   white-space: nowrap;
   line-height: 60px;
 }
+
+h2 {
+    color: white;
+    text-align: center;
+    vertical-align: central;
+}
+
+#sidenav {
+    height: 100%;
+    width: 11%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    padding-top: 20px;
+    background-color: #303030;
+    z-index: 500;
+}
+
+
+#sidenav li {
+    padding: 5px;
+    font-size: 20px;
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+}
+
+#sidenav li:hover {
+    background-color: #787878;
+}
+
+#main {
+    padding-left: 200px;
+}
